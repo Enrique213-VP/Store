@@ -44,4 +44,28 @@
             android:name="category"
             app:argType="string" />
     </fragment>
+    <argument
+        android:name="thumbnail"
+        app:argType="string" />
+    <argument
+        android:name="description"
+        app:argType="string" />
+    <argument
+        android:name="price"
+        app:argType="long" />
+    <argument
+        android:name="title"
+        app:argType="string" />
+    <argument
+        android:name="rating"
+        app:argType="float" />
+    <argument
+        android:name="stock"
+        app:argType="integer" />
+    <argument
+        android:name="brand"
+        app:argType="string" />
+    <argument
+        android:name="category"
+        app:argType="string" />
 </navigation>
