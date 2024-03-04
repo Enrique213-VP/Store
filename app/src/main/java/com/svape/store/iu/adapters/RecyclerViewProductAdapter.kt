@@ -16,6 +16,8 @@ class RecyclerViewProductAdapter(
     private val itemClickListener: OnProductClickListener
 ) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
+    private var filteredList: List<Product> = productList
+
     interface OnProductClickListener {
         fun onProductClick(product: Product)
     }
@@ -41,6 +43,19 @@ class RecyclerViewProductAdapter(
         when(holder){
             is ProductViewHolder -> holder.bind(productList[position])
         }
+    }
+
+    fun filter(query: String?) {
+        filteredList = if (query.isNullOrBlank()) {
+            productList // Si la consulta está vacía, muestra la lista completa
+        } else {
+            productList.filter { product ->
+                // Filtra según tus criterios, por ejemplo, el nombre del producto
+                product.title.contains(query, ignoreCase = true)
+            }
+        }
+
+        notifyDataSetChanged()
     }
 
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import com.svape.store.R
 import com.svape.store.data.local.ProductDatabase
 import com.svape.store.data.local.localDataSource.LocalProductDataSource
 import com.svape.store.data.model.Product
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import com.svape.store.data.remote.RemoteProductDataSource
 import com.svape.store.databinding.FragmentProductBinding
 import com.svape.store.domain.usecase.ProductRepositoryImp
@@ -72,7 +74,26 @@ class ProductFragment : Fragment(R.layout.fragment_product),
                 }
             }
         })
+
+
+
+        /*binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+        })*/
     }
+
+    private fun filterList(query: String?) {
+        recyclerViewProductAdapter?.filter(query)
+    }
+
+
 
     override fun onProductClick(product: Product) {
         val action =
